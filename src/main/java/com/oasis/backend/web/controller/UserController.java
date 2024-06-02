@@ -3,8 +3,9 @@ package com.oasis.backend.web.controller;
 import com.oasis.backend.domain.User;
 import com.oasis.backend.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,24 +17,40 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    public List<User> getAll()
+
+    @GetMapping("/all")
+    public ResponseEntity<List<User>> getAll()
     {
-        return userService.getAll();
+        return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
     }
 
-    public Optional<List<User>> getByEmail(String emailId){
-        return userService.getByEmail(emailId);
+    @GetMapping("/{email}")
+    public ResponseEntity<List<User>> getByEmail(@PathVariable("email") String emailId){
+        return userService.getByEmail(emailId)
+                .map(users -> new ResponseEntity<>(users, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    public Optional<User> getUser(int userId){
-        return userService.getUser(userId);
+
+    @GetMapping("/id/{userId}")
+    public ResponseEntity<User> getUser(@PathVariable("userId") int userId){
+        return userService.getUser(userId)
+                .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    public User save(User user){
-        return userService.save(user);
+
+    @PostMapping("/save")
+    public ResponseEntity<User> save(@RequestBody User user){
+        return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
     }
 
-    public boolean delete(int userId){
-        return userService.delete(userId);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity delete(@PathVariable("id") int userId){
+        if(userService.delete(userId)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
