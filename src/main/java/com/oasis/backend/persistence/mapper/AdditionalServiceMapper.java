@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface AdditionalServiceMapper {
 
@@ -18,6 +20,7 @@ public interface AdditionalServiceMapper {
             @Mapping(source = "precio" ,target = "price"),
     })
     AdditionalService toAdditionalService(ServicioAdicionales servicioAdicionales);
+    List<AdditionalService> toAdditionalServices(List<ServicioAdicionales> servicioAdicionales);
 
     @InheritInverseConfiguration
     @Mapping(target = "reservasConServicioAdicional", ignore = true)

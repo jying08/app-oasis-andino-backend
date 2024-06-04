@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface PayMapper {
 
@@ -19,6 +21,7 @@ public interface PayMapper {
             @Mapping(source = "reservaId" ,target = "reservationId"),
     })
     Pay toPay(Pago pago);
+    List<Pay> toPayList(List<Pago> pagos);
 
     @InheritInverseConfiguration
     @Mapping(target = "reserva", ignore = true)

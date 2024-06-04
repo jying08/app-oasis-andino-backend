@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface RoomMapper {
 
@@ -22,6 +24,7 @@ public interface RoomMapper {
             @Mapping(source = "precioPorMes", target = "pricePerMonth"),
     })
     Room toRoom(Habitacion habitacion);
+    List<Room> toRooms(List<Habitacion> habitaciones);
 
     @InheritInverseConfiguration
     @Mapping(target = "reservas", ignore = true)

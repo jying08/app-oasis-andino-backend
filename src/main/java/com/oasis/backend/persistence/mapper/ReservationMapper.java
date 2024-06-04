@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface ReservationMapper {
 
@@ -21,6 +23,7 @@ public interface ReservationMapper {
             @Mapping(source = "habitacionId" ,target = "roomId"),
     })
     Reservation toReservation(Reserva reserva);
+    List<Reservation> toReservations(List<Reserva> reservations);
 
     @InheritInverseConfiguration
     @Mappings({
