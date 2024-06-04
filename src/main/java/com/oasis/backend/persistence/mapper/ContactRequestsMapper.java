@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface ContactRequestsMapper {
 
@@ -20,6 +22,7 @@ public interface ContactRequestsMapper {
             @Mapping(source = "estado", target = "state"),
     })
     ContactRequests toContactRequests(SolicitudContactos solicitudContactos);
+    List<ContactRequests> toContactsRequests(List<SolicitudContactos> solicitudContactos);
 
     @InheritInverseConfiguration
     SolicitudContactos toSolicitudContactos(ContactRequests contactRequests);
