@@ -14,7 +14,7 @@ public class ReservasServicioAdicionalPK implements Serializable {
     private Integer idReserva;
 
     @Column(name = "id_servicio_adicional")
-    private Integer idAervicioAdicional;
+    private Integer idServicioAdicional;
 
 
     public Integer getIdReserva() {
@@ -25,12 +25,11 @@ public class ReservasServicioAdicionalPK implements Serializable {
         this.idReserva = idReserva;
     }
 
-    public Integer getIdAervicioAdicional() {
-        return idAervicioAdicional;
+    public Integer getIdServicioAdicional() {
+        return idServicioAdicional;
     }
 
-    public void setIdAervicioAdicional(Integer idAervicioAdicional) {
-        this.idAervicioAdicional = idAervicioAdicional;
+    public void setIdServicioAdicional(Integer idServicioAdicional) {
+        this.idServicioAdicional = idServicioAdicional;
     }
-
 }

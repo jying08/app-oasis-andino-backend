@@ -18,6 +18,7 @@ public class ServiciosAdicionalRepository implements AdicionalServiceRepository 
     @Autowired
     public ServicioAdicionalesCrudRepository servicioAdicionalesCrudRepository;
 
+    @Autowired
     public AdditionalServiceMapper mapper;
 
     @Override

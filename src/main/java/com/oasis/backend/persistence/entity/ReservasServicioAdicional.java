@@ -15,6 +15,7 @@ public class ReservasServicioAdicional {
     private LocalDateTime fecha;
 
     @ManyToOne
+    @MapsId("idReserva")
     @JoinColumn(name = "id_reserva", insertable = false, updatable = false)
     private Reserva reserva;
 
