@@ -17,6 +17,7 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
+    @CrossOrigin(origins = {"http://localhost:4200", "http://172.22.240.1:4200", "http://172.22.248.5:4200", "https://app-oasis-angular.web.app"})
     @GetMapping("/all")
     public ResponseEntity<List<Room>> getAllRooms()
     {
